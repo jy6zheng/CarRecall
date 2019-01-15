@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CarRecall</string>
+    <string-array name="carbrand">
+        <item>Toyota</item>
+        <item>Audi</item>
+        <item>Honda</item>
+
+    </string-array>
 </resources>

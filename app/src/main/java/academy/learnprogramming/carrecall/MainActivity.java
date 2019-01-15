@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String TAG = MainActivity.class.getSimpleName();
     private ListView lv;
+    private String cartype;
 
     ArrayList<HashMap<String, String>> carList;
 
@@ -46,10 +47,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(getIntent().hasExtra("zheng.joyce.cartype")){
+            cartype = getIntent().getExtras().getString("zheng.joyce.cartype");
+        }
+
         carList = new ArrayList<>();
         lv = (ListView) findViewById(R.id.list);
 
         new GetCars().execute();
+
+
     }
 
     private class GetCars extends AsyncTask<Void, Void, Void> {
@@ -64,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(Void... arg0) {
 
             RecallClient call = new RecallClient();
-            String information = call.searchRecall("toyota");
+            String information = call.searchRecall(cartype);
 
 
             //Log.e(TAG, "Response from url: " + information);
